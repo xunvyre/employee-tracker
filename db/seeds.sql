@@ -1,15 +1,15 @@
-INSERT INTO departments (id, name)
+INSERT INTO departments (department_id, department_title)
 VALUES
     (001, 'Engineering'),
     (002, 'Customer Service'),
     (003, 'Finance'),
     (004, 'Marketing');
 
-INSERT INTO roles (id, title, salary, department_id, management)
+INSERT INTO roles (role_id, role_title, salary, department_id, management)
 VALUES
     (011, 'Software Engineer', 75000, 001, 0),
     (022, 'Engineering Team Lead', 100000, 001, 1),
-    (033, 'Customer Service Agent', 32000, 002),
+    (033, 'Customer Service Agent', 32000, 002, 0),
     (044, 'Service Team Lead', 100000, 002, 1),
     (055, 'Accountant', 50000, 003, 0),
     (066, 'Financial Manager', 100000, 003, 1),

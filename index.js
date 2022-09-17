@@ -34,27 +34,27 @@ function startingPrompt()
             case `View employees.`:
                 viewEmployees();
                 return;
+                break;
             case `Add employee.`:
                 addEmployee();
-                return;
+                break;
             case `Update employee information.`:
                 editEmployee();
-                return;
+                break;
             case `View roles.`:
                 viewRoles();
-                return;
+                break;
             case `Add a role.`:
                 addRole();
-                return;
+                break;
             case `View departments.`:
                 viewDeparts();
-                return;
+                break;
             case `Add a department.`:
                 addDepart();
-                return;
+                break;
             case `Quit.`:
                 quit();
-                return;
         };
     });
 };
