@@ -12,7 +12,7 @@ CREATE TABLE roles
 (
     id INTEGER PRIMARY KEY NOT NULL,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL(10, 2) NOT NULL,
+    salary DECIMAL NOT NULL,
     department_id INTEGER NOT NULL,
     management BOOLEAN NOT NULL,
     FOREIGN KEY (department_id) REFERENCES departments(id)
