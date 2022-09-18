@@ -6,9 +6,9 @@ const {viewRoles, addRole} = require('./utils/role-functions');
 const {viewDeparts, addDepart} = require('./utils/department-functions');
 const {quit} = require('./utils/qol-functions');
 
-function startingPrompt()
+async function startingPrompt()
 {
-    inquirer.prompt
+    await inquirer.prompt
     ([
         {
             type: 'list',
@@ -29,33 +29,43 @@ function startingPrompt()
     ])
     .then((response) =>
     {
-        switch (response.choice)
+        if (response.choice === `Quit.`)
         {
-            case `View employees.`:
-                viewEmployees();
-                return;
-                break;
-            case `Add employee.`:
-                addEmployee();
-                break;
-            case `Update employee information.`:
-                editEmployee();
-                break;
-            case `View roles.`:
-                viewRoles();
-                break;
-            case `Add a role.`:
-                addRole();
-                break;
-            case `View departments.`:
-                viewDeparts();
-                break;
-            case `Add a department.`:
-                addDepart();
-                break;
-            case `Quit.`:
-                quit();
+            quit();
+        }
+        else
+        {
+            switch (response.choice)
+            {
+                case `View employees.`:
+                    viewEmployees();
+                    break;
+                case `Add employee.`:
+                    addEmployee();
+                    break;
+                case `Update employee information.`:
+                    editEmployee();
+                    break;
+                case `View roles.`:
+                    viewRoles();
+                    break;
+                case `Add a role.`:
+                    addRole();
+                    break;
+                case `View departments.`:
+                    viewDeparts();
+                    break;
+                case `Add a department.`:
+                    addDepart();
+                    break;
+                case `Quit.`:
+                    quit();
+            }
         };
+    })
+    .catch(err =>
+    {
+        console.error(err);
     });
 };
 
