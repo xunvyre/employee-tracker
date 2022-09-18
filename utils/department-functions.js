@@ -1,6 +1,14 @@
+const db = require('../db/connection');
+const inquirer = require('inquirer');
+const conTable = require('console.table');
+
 const viewDeparts = () =>
 {
-    console.log('success');
+    db.query(`SELECT * FROM departments;`, (err, res) =>
+    {
+      if (err) throw err;
+      console.table(res);
+    });
 };
 
 const addDepart = () =>

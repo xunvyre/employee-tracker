@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS departments;
 
 CREATE TABLE departments
 (
-    department_id INTEGER PRIMARY KEY,
+    department_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     department_title VARCHAR(30) NOT NULL
 );
 
