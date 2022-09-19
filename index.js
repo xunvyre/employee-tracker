@@ -6,9 +6,9 @@ const {viewRoles, addRole} = require('./utils/role-functions');
 const {viewDeparts, addDepart} = require('./utils/department-functions');
 const {quit} = require('./utils/qol-functions');
 
-async function startingPrompt()
+function startingPrompt()
 {
-    await inquirer.prompt
+    inquirer.prompt
     ([
         {
             type: 'list',
@@ -32,6 +32,7 @@ async function startingPrompt()
         if (response.choice === `Quit.`)
         {
             quit();
+            return;
         }
         else
         {
@@ -58,8 +59,6 @@ async function startingPrompt()
                 case `Add a department.`:
                     addDepart();
                     break;
-                case `Quit.`:
-                    quit();
             }
         };
     })
