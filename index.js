@@ -330,7 +330,7 @@ const deleteDepart = () =>
 const quit = () =>
 {
     console.log(`Thank you for using Employee Tracker!`);
-    db.end();
+    process.exit();
 };
 
 /*============Starting Call============*/
