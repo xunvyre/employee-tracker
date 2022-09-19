@@ -61,11 +61,28 @@ const editEmployee = () =>
             type: 'number',
             name: 'id',
             message: `What is the ID of the employee you wish to update?`
+        },
+        {
+            type: 'number',
+            name: 'role_id',
+            message: `What is the ID number of their new position?`
+        },
+        {
+            type: 'number',
+            name: 'manager_id',
+            message: `What is the ID number of their manager? Leave blank if they are now in management.`
         }
     ])
-    .then((id) =>
+    .then(({id, role_id, manager_id}) =>
     {
-        console.log(id);
+        const sql = `UPDATE employees SET employees.role_id = ?, employees.manager_id = ? WHERE employees.id = ?;`;
+        const params = [role_id, manager_id, id];
+
+        db.query(sql, params, (err, res) =>
+        {
+            if (err) throw err;
+            viewEmployees();
+        });
     })
 };
 
