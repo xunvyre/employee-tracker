@@ -111,7 +111,7 @@ const addEmployee = () =>
         {
             type: 'number',
             name: 'manager_id',
-            message: `What is the ID of the supervisor of this employee?`
+            message: `What is the ID of the supervisor of this employee? Answer "0" if they have no supervisor.`
         }
     ])
     .then(({last_name, first_name, role_id, manager_id}) =>
@@ -122,7 +122,7 @@ const addEmployee = () =>
         db.query(sql, params, (err, res) =>
         {
             if (err) throw err;
-            viewEmployees();
+            console.log(first_name+ ` ` +last_name+ ` added to database.`);
             startingPrompt();
         });
     });
@@ -145,7 +145,7 @@ const editEmployee = () =>
         {
             type: 'number',
             name: 'manager_id',
-            message: `What is the ID number of their manager? Leave blank if they are now in management.`
+            message: `What is the ID number of their manager? Answer "0" if they do not have a supervisor.`
         }
     ])
     .then(({id, role_id, manager_id}) =>
@@ -156,7 +156,7 @@ const editEmployee = () =>
         db.query(sql, params, (err, res) =>
         {
             if (err) throw err;
-            viewEmployees();
+            console.log(`Updated employee successfully.`);
             startingPrompt();
         });
     });
@@ -179,7 +179,7 @@ const deleteEmployee = () =>
         db.query(sql, id, (err, res) =>
         {
             if (err) throw err;
-            viewEmployees();
+            console.log(`Employee deleted successfully.`);
             startingPrompt();
         });
     });
@@ -237,7 +237,7 @@ const addRole = () =>
         db.query(sql, params, (err, res) =>
         {
             if (err) throw err;
-            viewRoles();
+            console.log(role_title+ ` position/role created successfully.`);
             startingPrompt();
         });
     });
@@ -260,7 +260,7 @@ const deleteRole = () =>
         db.query(sql, id, (err, res) =>
         {
             if (err) throw err;
-            viewEmployees();
+            console.log(`Position/role deleted successfully.`);
             startingPrompt();
         });
     });
@@ -296,7 +296,7 @@ const addDepart = () =>
         db.query(sql, params, (err, res) =>
         {
             if (err) throw err;
-            viewDeparts();
+            console.log(`Department added successfully.`)
             startingPrompt();
         });
     });
@@ -319,7 +319,7 @@ const deleteDepart = () =>
         db.query(sql, id, (err, res) =>
         {
             if (err) throw err;
-            viewEmployees();
+            console.log(`Department deleted successfully.`)
             startingPrompt();
         });
     });

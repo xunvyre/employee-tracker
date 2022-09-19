@@ -19,14 +19,14 @@ VALUES
 
 INSERT INTO employees (last_name, first_name, role_id, manager_id)
 VALUES
-    ('G. Pig', 'Meatloaf', 022, null),
+    ('G. Pig', 'Meatloaf', 022, 0),
     ('Squash', 'Butternut', 011, 1),
-    ('Pie', 'Sweetie', 044, null),
+    ('Pie', 'Sweetie', 044, 0),
     ('Soup', 'Miso', 033, 3),
     ('Nugget', 'Chicken', 033, 3),
-    ('Puff', 'Cream', 066, null),
+    ('Puff', 'Cream', 066, 0),
     ('Roll', 'Sushi', 055, 6),
-    ('Wigglesworth', 'Taimi', 099, null),
+    ('Wigglesworth', 'Taimi', 099, 0),
     ('Wigglesworth', 'Dumpling', 077, 8),
     ('Bean', 'Vanilla', 088, 8),
     ('Bar', 'Hershey', 077, 8),
