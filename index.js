@@ -13,51 +13,59 @@ function startingPrompt()
             choices:
             [
                 `View employees.`,
-                `Add employee.`,
+                `Add an employee.`,
                 `Update employee information.`,
+                `Remove an employee.`,
                 `View roles.`,
                 `Add a role.`,
+                `Remove a role.`,
                 `View departments.`,
                 `Add a department.`,
+                `Remove a department.`,
                 `Quit.`
             ]
         }
     ])
     .then((response) =>
     {
-        if (response.choice === `Quit.`)
+        switch (response.choice)
         {
-            quit();
-        }
-        else
-        {
-            switch (response.choice)
-            {
-                case `View employees.`:
-                    viewEmployees();
-                    break;
-                case `Add employee.`:
-                    addEmployee();
-                    break;
-                case `Update employee information.`:
-                    editEmployee();
-                    break;
-                case `View roles.`:
-                    viewRoles();
-                    break;
-                case `Add a role.`:
-                    addRole();
-                    break;
-                case `View departments.`:
-                    viewDeparts();
-                    break;
-                case `Add a department.`:
-                    addDepart();
-                    break;
-                default:
-                    break;
-            };   
-        };
+            case `View employees.`:
+                viewEmployees();
+                break;
+            case `Add an employee.`:
+                addEmployee();
+                break;
+            case `Update employee information.`:
+                editEmployee();
+                break;
+            case `Remove an employee.`:
+                deleteEmployee();
+                break;
+            case `View roles.`:
+                viewRoles();
+                break;
+            case `Add a role.`:
+                addRole();
+                break;
+            case `Remove a role.`:
+                deleteRole();
+                break;
+            case `View departments.`:
+                viewDeparts();
+                break;
+            case `Add a department.`:
+                addDepart();
+                break;
+            case `Remove a department.`:
+                deleteDepart();
+                break;
+            case `Quit.`:
+                quit();
+                break;
+            default:
+                break;
+        };   
     })
     .catch(err =>
     {
@@ -151,7 +159,30 @@ const editEmployee = () =>
             viewEmployees();
             startingPrompt();
         });
-    })
+    });
+};
+
+const deleteEmployee = () =>
+{
+    inquirer.prompt
+    ([
+        {
+            type: 'number',
+            name: 'id',
+            message: `Please enter the ID of the employee you wish to remove from the database:`
+        }
+    ])
+    .then(({id}) =>
+    {
+        const sql = `DELETE FROM employees WHERE id = ?;`;
+        
+        db.query(sql, id, (err, res) =>
+        {
+            if (err) throw err;
+            viewEmployees();
+            startingPrompt();
+        });
+    });
 };
 
 /*============Role Functions============*/
@@ -212,6 +243,29 @@ const addRole = () =>
     });
 };
 
+const deleteRole = () =>
+{
+    inquirer.prompt
+    ([
+        {
+            type: 'number',
+            name: 'id',
+            message: `Please enter the ID of the position/role you wish to remove from the database:`
+        }
+    ])
+    .then(({id}) =>
+    {
+        const sql = `DELETE FROM roles WHERE role_id = ?;`;
+        
+        db.query(sql, id, (err, res) =>
+        {
+            if (err) throw err;
+            viewEmployees();
+            startingPrompt();
+        });
+    });
+};
+
 /*============Department Functions============*/
 
 const viewDeparts = () =>
@@ -243,6 +297,29 @@ const addDepart = () =>
         {
             if (err) throw err;
             viewDeparts();
+            startingPrompt();
+        });
+    });
+};
+
+const deleteDepart = () =>
+{
+    inquirer.prompt
+    ([
+        {
+            type: 'number',
+            name: 'id',
+            message: `Please enter the ID of the department you wish to remove from the database:`
+        }
+    ])
+    .then(({id}) =>
+    {
+        const sql = `DELETE FROM departments WHERE department_id = ?;`;
+        
+        db.query(sql, id, (err, res) =>
+        {
+            if (err) throw err;
+            viewEmployees();
             startingPrompt();
         });
     });
